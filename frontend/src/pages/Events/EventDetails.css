@@ -1,0 +1,134 @@
+.event-details-page {
+  min-height: 60vh;
+}
+
+.event-banner {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.event-details-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+.event-main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.event-short-desc {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.event-meta {
+  background-color: var(--bg-primary);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.meta-item:last-child {
+  border-bottom: none;
+}
+
+.meta-item strong {
+  color: var(--text-primary);
+  min-width: 120px;
+}
+
+.event-long-desc {
+  background-color: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.event-long-desc h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.event-long-desc p {
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.event-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.sidebar-card {
+  background-color: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.seats-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.seats-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.seats-count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.seats-count .available {
+  color: var(--secondary-color);
+}
+
+.seats-count .separator {
+  color: var(--text-secondary);
+  font-size: 2rem;
+}
+
+.seats-count .total {
+  color: var(--text-secondary);
+}
+
+.seats-warning {
+  color: var(--warning-color);
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 968px) {
+  .event-details-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-sidebar {
+    position: static;
+  }
+}
