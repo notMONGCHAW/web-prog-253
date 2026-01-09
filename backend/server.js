@@ -315,6 +315,12 @@ app.use((req, res) => {
 })
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 UIU Events running at http://localhost:${PORT}`)
-})
+// In Vercel's serverless environment, we must export the app instead of listening.
+// Locally, still start the server with app.listen.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 UIU Events running at http://localhost:${PORT}`)
+  })
+}
+
+export default app
