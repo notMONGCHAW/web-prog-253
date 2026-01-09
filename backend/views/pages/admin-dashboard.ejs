@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - UIU Events</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="admin-dashboard">
+      <h2>Admin Dashboard</h2>
+      <p class="admin-dashboard__subtitle">Manage events and monitor the platform</p>
+      
+      <div class="admin-stats">
+        <div class="stat-card stat-card--large">
+          <div class="stat-card__icon">📅</div>
+          <div class="stat-card__content">
+            <h3><%= eventCount %></h3>
+            <p>Total Events</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="admin-actions">
+        <h3>Admin Tools</h3>
+        <div class="grid grid--2">
+          <a href="/admin/events" class="action-card action-card--primary">
+            <div class="action-card__icon">📝</div>
+            <h4>Manage Events</h4>
+            <p>Create, edit, and delete events</p>
+          </a>
+          
+          <a href="/admin/events/new" class="action-card action-card--primary">
+            <div class="action-card__icon">➕</div>
+            <h4>Create New Event</h4>
+            <p>Add a new event to the platform</p>
+          </a>
+          
+          <a href="/scanner" class="action-card action-card--primary">
+            <div class="action-card__icon">📸</div>
+            <h4>QR Scanner</h4>
+            <p>Scan and validate tickets</p>
+          </a>
+          
+          <a href="/events" class="action-card">
+            <div class="action-card__icon">👁️</div>
+            <h4>View as User</h4>
+            <p>See the public event listing</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

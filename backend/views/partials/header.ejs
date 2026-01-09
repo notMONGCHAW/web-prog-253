@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="logo">UIU Events</a>
+    <nav class="nav">
+      <a href="/" class="nav__link">Home</a>
+      <a href="/events" class="nav__link">Events</a>
+      <% if (user) { %>
+        <a href="/my-events" class="nav__link">My Events</a>
+        <a href="/dashboard" class="nav__link">Dashboard</a>
+        <% if (user.role === 'admin') { %>
+          <a href="/admin" class="nav__link">Admin</a>
+        <% } %>
+        <form action="/logout" method="post" style="display:inline;margin-left:0.5rem;">
+          <button type="submit" class="btn btn--link">Logout (<%= user.name %>)</button>
+        </form>
+      <% } else { %>
+        <a href="/login" class="nav__link">Login</a>
+        <a href="/register" class="nav__link">Register</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

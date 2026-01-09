@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UIU Events - Home</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="hero">
+      <h1 class="hero__title">Welcome to UIU Events</h1>
+      <p class="hero__description">Discover and register for exciting university events. Get QR-coded tickets instantly!</p>
+      <div class="hero__actions">
+        <a href="/events" class="btn btn--primary btn--large">Browse Events</a>
+        <% if (!user) { %>
+          <a href="/register" class="btn btn--secondary btn--large">Sign Up</a>
+        <% } %>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2 class="section__title">Features</h2>
+      <div class="grid grid--3">
+        <div class="feature-card">
+          <div class="feature-card__icon">🎫</div>
+          <h3>QR Tickets</h3>
+          <p>Instant QR-coded tickets for registered events</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">📅</div>
+          <h3>Event Management</h3>
+          <p>Browse, search, and register for events seamlessly</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🔐</div>
+          <h3>Secure Access</h3>
+          <p>Protected user dashboards and admin controls</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

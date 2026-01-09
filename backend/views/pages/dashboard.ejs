@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - UIU Events</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="dashboard">
+      <h2>Welcome, <%= user.name %>!</h2>
+      <p class="dashboard__subtitle">Manage your events and tickets from here</p>
+      
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-card__icon">🎫</div>
+          <div class="stat-card__content">
+            <h3><%= registrationCount %></h3>
+            <p>Registered Events</p>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-card__icon">👤</div>
+          <div class="stat-card__content">
+            <h3><%= user.role === 'admin' ? 'Admin' : 'User' %></h3>
+            <p>Account Type</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dashboard-actions">
+        <h3>Quick Actions</h3>
+        <div class="grid grid--2">
+          <a href="/events" class="action-card">
+            <div class="action-card__icon">🔍</div>
+            <h4>Browse Events</h4>
+            <p>Discover new events to attend</p>
+          </a>
+          
+          <a href="/my-events" class="action-card">
+            <div class="action-card__icon">📋</div>
+            <h4>My Events</h4>
+            <p>View your registered events and tickets</p>
+          </a>
+          
+          <% if (user.role === 'admin') { %>
+            <a href="/admin" class="action-card action-card--highlight">
+              <div class="action-card__icon">⚙️</div>
+              <h4>Admin Panel</h4>
+              <p>Manage events and scan tickets</p>
+            </a>
+            
+            <a href="/scanner" class="action-card action-card--highlight">
+              <div class="action-card__icon">📸</div>
+              <h4>QR Scanner</h4>
+              <p>Scan and validate event tickets</p>
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="error-page">
+      <div class="error-content">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-message">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+        <div class="error-actions">
+          <a href="/" class="btn btn--primary">Go Home</a>
+          <a href="/events" class="btn btn--secondary">Browse Events</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

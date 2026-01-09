@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Events - Admin</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="admin-events">
+      <div class="admin-events__header">
+        <h2>Manage Events</h2>
+        <a href="/admin/events/new" class="btn btn--primary">➕ Create New Event</a>
+      </div>
+      
+      <div class="events-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date & Time</th>
+              <th>Location</th>
+              <th>Seats</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% events.forEach(event => { %>
+              <tr>
+                <td>
+                  <strong><%= event.title %></strong>
+                </td>
+                <td>
+                  <%= event.date %><br/>
+                  <small><%= event.time %></small>
+                </td>
+                <td><%= event.location %></td>
+                <td>
+                  <span class="<%= event.availableSeats < 10 ? 'text-warning' : '' %>">
+                    <%= event.availableSeats %>/<%= event.seats %>
+                  </span>
+                </td>
+                <td class="actions-cell">
+                  <a href="/events/<%= event.id %>" class="btn btn--small">View</a>
+                  <a href="/admin/events/edit/<%= event.id %>" class="btn btn--small btn--secondary">Edit</a>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

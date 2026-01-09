@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events - UIU</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="events-page">
+      <div class="events-page__header">
+        <h2>Upcoming Events</h2>
+        <form action="/events" method="get" class="search-form">
+          <input 
+            type="text" 
+            name="search" 
+            placeholder="Search events..." 
+            value="<%= search %>"
+            class="search-input"
+          />
+          <button type="submit" class="btn btn--primary">Search</button>
+        </form>
+      </div>
+
+      <% if (events.length === 0) { %>
+        <p class="empty-state">No events found. <a href="/events">Clear search</a></p>
+      <% } else { %>
+        <div class="grid grid--2">
+          <% events.forEach(event => { %>
+            <article class="event-card">
+              <img src="<%= event.image %>" alt="<%= event.title %>" class="event-card__image" />
+              <div class="event-card__body">
+                <h3 class="event-card__title">
+                  <a href="/events/<%= event.id %>"><%= event.title %></a>
+                </h3>
+                <p class="event-card__description"><%= event.description %></p>
+                <div class="event-card__meta">
+                  <span class="meta-item">📅 <%= event.date %></span>
+                  <span class="meta-item">🕐 <%= event.time %></span>
+                  <span class="meta-item">📍 <%= event.location %></span>
+                  <span class="meta-item seats">💺 <%= event.availableSeats %>/<%= event.seats %> seats</span>
+                </div>
+                <a href="/events/<%= event.id %>" class="btn btn--primary btn--block">View Details</a>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

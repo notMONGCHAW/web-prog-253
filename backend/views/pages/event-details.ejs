@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= event.title %> - UIU Events</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <article class="event-details">
+      <div class="event-details__image-wrapper">
+        <img src="<%= event.image %>" alt="<%= event.title %>" class="event-details__image" />
+      </div>
+      
+      <div class="event-details__content">
+        <h1 class="event-details__title"><%= event.title %></h1>
+        <p class="event-details__description"><%= event.longDescription %></p>
+        
+        <div class="event-details__info">
+          <div class="info-row">
+            <strong>📅 Date:</strong>
+            <span><%= event.date %></span>
+          </div>
+          <div class="info-row">
+            <strong>🕐 Time:</strong>
+            <span><%= event.time %></span>
+          </div>
+          <div class="info-row">
+            <strong>⏱️ Duration:</strong>
+            <span><%= event.duration %></span>
+          </div>
+          <div class="info-row">
+            <strong>📍 Location:</strong>
+            <span><%= event.location %></span>
+          </div>
+          <div class="info-row">
+            <strong>🗺️ Address:</strong>
+            <span><%= event.address %></span>
+          </div>
+          <div class="info-row">
+            <strong>💺 Available Seats:</strong>
+            <span><%= event.availableSeats %> / <%= event.seats %></span>
+          </div>
+          <div class="info-row">
+            <strong>👤 Organizer:</strong>
+            <span><%= event.organizer %></span>
+          </div>
+          <div class="info-row">
+            <strong>💰 Price:</strong>
+            <span><%= event.price %></span>
+          </div>
+        </div>
+
+        <div class="event-details__actions">
+          <% if (!user) { %>
+            <a href="/login" class="btn btn--primary btn--large">Login to Register</a>
+          <% } else if (isRegistered) { %>
+            <div class="alert alert--success">✓ You are registered for this event</div>
+            <form action="/events/<%= event.id %>/unregister" method="post">
+              <button type="submit" class="btn btn--secondary">Unregister</button>
+            </form>
+          <% } else { %>
+            <form action="/events/<%= event.id %>/register" method="post">
+              <button type="submit" class="btn btn--primary btn--large">Register Now</button>
+            </form>
+          <% } %>
+          <a href="/events" class="btn btn--secondary">Back to Events</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

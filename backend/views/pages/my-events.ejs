@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Events - UIU</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="my-events">
+      <h2>My Registered Events</h2>
+      
+      <% if (registrations.length === 0) { %>
+        <div class="empty-state">
+          <p>You haven't registered for any events yet.</p>
+          <a href="/events" class="btn btn--primary">Browse Events</a>
+        </div>
+      <% } else { %>
+        <div class="registrations-list">
+          <% registrations.forEach(reg => { %>
+            <div class="registration-card">
+              <div class="registration-card__content">
+                <h3 class="registration-card__title"><%= reg.eventTitle %></h3>
+                <div class="registration-card__meta">
+                  <span>📅 <%= reg.eventDate %></span>
+                  <span>🕐 <%= reg.eventTime %></span>
+                  <span>📍 <%= reg.eventLocation %></span>
+                </div>
+                <div class="registration-card__status">
+                  <span class="status-badge status-badge--<%= reg.status %>">
+                    <%= reg.status.toUpperCase() %>
+                  </span>
+                </div>
+              </div>
+              <div class="registration-card__actions">
+                <a href="/tickets/<%= reg.id %>" class="btn btn--primary">View Ticket</a>
+                <a href="/events/<%= reg.eventId %>" class="btn btn--secondary">Event Details</a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

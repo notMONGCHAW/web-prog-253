@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Scanner - UIU</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="scanner-page">
+      <h2>QR Ticket Scanner</h2>
+      <p class="scanner-page__description">Use this tool to scan and validate event tickets</p>
+      
+      <div class="scanner-container">
+        <div id="qr-reader" class="qr-reader"></div>
+        <div id="qr-result" class="qr-result"></div>
+      </div>
+      
+      <div class="scanner-instructions">
+        <h3>Instructions:</h3>
+        <ul>
+          <li>Allow camera access when prompted</li>
+          <li>Position the QR code within the camera view</li>
+          <li>The system will automatically scan and validate the ticket</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script>
+    const resultContainer = document.getElementById('qr-result');
+    
+    const onScanSuccess = (decodedText) => {
+      resultContainer.innerHTML = `
+        <div class="alert alert--success">
+          <strong>✓ Valid Ticket</strong>
+          <p>Ticket ID: ${decodedText}</p>
+          <p>Access granted</p>
+        </div>
+      `;
+    };
+    
+    const onScanFailure = (error) => {
+      // Silently ignore scan failures to avoid console spam
+    };
+    
+    const html5QrCode = new Html5Qrcode("qr-reader");
+    
+    Html5Qrcode.getCameras().then(devices => {
+      if (devices && devices.length) {
+        const cameraId = devices[0].id;
+        html5QrCode.start(
+          cameraId,
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          onScanSuccess,
+          onScanFailure
+        ).catch(err => {
+          resultContainer.innerHTML = `
+            <div class="alert alert--error">
+              <strong>Camera Error</strong>
+              <p>${err}</p>
+            </div>
+          `;
+        });
+      } else {
+        resultContainer.innerHTML = `
+          <div class="alert alert--error">
+            <strong>No Camera Found</strong>
+            <p>Please ensure your device has a camera and you've granted permission.</p>
+          </div>
+        `;
+      }
+    }).catch(err => {
+      resultContainer.innerHTML = `
+        <div class="alert alert--error">
+          <strong>Permission Denied</strong>
+          <p>Please allow camera access to use the QR scanner.</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

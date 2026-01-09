@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Ticket - UIU</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <style>
+    @media print {
+      .header, .footer, .ticket__actions { display: none; }
+      .ticket { box-shadow: none; border: 2px solid #000; }
+    }
+  </style>
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="ticket-page">
+      <div class="ticket">
+        <div class="ticket__header">
+          <h2>Event Ticket</h2>
+          <span class="status-badge status-badge--<%= registration.status %>">
+            <%= registration.status.toUpperCase() %>
+          </span>
+        </div>
+        
+        <div class="ticket__body">
+          <div class="ticket__info">
+            <h3 class="ticket__event-title"><%= registration.eventTitle %></h3>
+            <div class="ticket__details">
+              <div class="ticket__detail">
+                <strong>Date:</strong>
+                <span><%= registration.eventDate %></span>
+              </div>
+              <div class="ticket__detail">
+                <strong>Time:</strong>
+                <span><%= registration.eventTime %></span>
+              </div>
+              <div class="ticket__detail">
+                <strong>Location:</strong>
+                <span><%= registration.eventLocation %></span>
+              </div>
+              <div class="ticket__detail">
+                <strong>Ticket ID:</strong>
+                <span><%= registration.qrData %></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="ticket__qr">
+            <img src="<%= qrPng %>" alt="QR Code" class="qr-code" />
+            <p class="qr-instruction">Scan this QR code at the event entrance</p>
+          </div>
+        </div>
+        
+        <div class="ticket__actions">
+          <a href="<%= qrPng %>" download="ticket-<%= registration.id %>.png" class="btn btn--primary">
+            Download Ticket
+          </a>
+          <button onclick="window.print()" class="btn btn--secondary">
+            Print Ticket
+          </button>
+          <a href="/my-events" class="btn">Back to My Events</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

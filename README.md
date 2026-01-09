@@ -3,7 +3,8 @@
 **Course:** Web Programming 253 (Trimester)  
 **University:** United International University  
 **Repository:** [notMONGCHAW/web-prog-253](https://github.com/notMONGCHAW/web-prog-253)  
-**Project Type:** Full-Stack Web Application
+**Project Type:** Full-Stack Web Application  
+**Stack:** Express.js + EJS (Server-Side Rendering)
 
 ---
 
@@ -12,6 +13,8 @@
 A complete online event registration platform where users can discover events, register/unregister, and receive QR-coded tickets. Administrators manage events, view participants, and scan QR codes for attendance tracking.
 
 **The Twist:** Registration automatically generates **QR-coded tickets** (format: `eventID-userID`) that can be downloaded, printed, and scanned for seamless check-in.
+
+**Tech Stack:** Express.js server with EJS templates, session-based authentication, server-side QR generation, and responsive CSS design.
 
 ---
 
@@ -56,71 +59,38 @@ A complete online event registration platform where users can discover events, r
 
 ```
 web-prog-253/
-├── frontend/                           # React + Vite frontend (deployed)
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Header/                # Navigation & user menu
-│   │   │   │   ├── Header.jsx
-│   │   │   │   └── Header.css
-│   │   │   ├── Footer/                # Footer with links
-│   │   │   │   ├── Footer.jsx
-│   │   │   │   └── Footer.css
-│   │   │   ├── Layout/                # Main layout wrapper
-│   │   │   │   ├── Layout.jsx
-│   │   │   │   └── Layout.css
-│   │   │   ├── ProtectedRoute/        # Route protection (user & admin)
-│   │   │   │   ├── ProtectedRoute.jsx
-│   │   │   │   └── AdminRoute.jsx
-│   │   │   ├── QRTicket/              # QR ticket display & download
-│   │   │   │   ├── QRTicket.jsx
-│   │   │   │   └── QRTicket.css
-│   │   │   └── QRScanner/             # QR code scanner
-│   │   │       ├── QRScanner.jsx
-│   │   │       └── QRScanner.css
-│   │   ├── contexts/
-│   │   │   └── AuthContext.jsx        # Authentication state (mock)
-│   │   ├── pages/
-│   │   │   ├── Home/
-│   │   │   │   ├── Home.jsx
-│   │   │   │   └── Home.css
-│   │   │   ├── Events/
-│   │   │   │   ├── Events.jsx         # Event listing with search
-│   │   │   │   ├── EventDetails.jsx   # Event details & registration
-│   │   │   │   ├── MyEvents.jsx       # User's registered events
-│   │   │   │   ├── Events.css
-│   │   │   │   └── MyEvents.css
-│   │   │   ├── Auth/
-│   │   │   │   ├── Login.jsx
-│   │   │   │   ├── Register.jsx
-│   │   │   │   └── Auth.css
-│   │   │   ├── Dashboard/
-│   │   │   │   ├── Dashboard.jsx      # User dashboard
-│   │   │   │   └── Dashboard.css
-│   │   │   └── Admin/
-│   │   │       ├── AdminDashboard.jsx # Admin overview
-│   │   │       ├── AdminEvents.jsx    # Manage events (list)
-│   │   │       ├── AdminEventForm.jsx # Create/edit events
-│   │   │       ├── AdminDashboard.css
-│   │   │       ├── AdminEvents.css
-│   │   │       └── AdminEventForm.css
-│   │   ├── config/
-│   │   │   └── api.js                 # API endpoints (pre-configured)
-│   │   ├── App.jsx                    # Main app with routing
-│   │   ├── main.jsx                   # React entry point
-│   │   └── index.css                  # Global styles & theme variables
-│   ├── index.html                     # HTML template
+├── backend/                            # Express.js application (MAIN)
+│   ├── server.js                      # Express server entry point
 │   ├── package.json                   # Dependencies & scripts
-│   ├── vite.config.js                 # Vite configuration
-│   ├── vercel.json                    # Vercel deployment config
-│   ├── .env.example                   # Environment variables template
-│   ├── .gitignore                     # Git ignore rules
-│   ├── .editorconfig                  # Editor formatting rules
-│   ├── .vscode/extensions.json        # Recommended VS Code extensions
-│   └── README.md                      # Frontend-specific documentation
-├── backend/                            # Backend API (Node.js/PHP/etc)
-│   └── PLACEHOLDER                    # Backend structure to be created
+│   ├── views/                         # EJS templates
+│   │   ├── pages/                     # Full pages
+│   │   │   ├── home.ejs              # Landing page
+│   │   │   ├── events.ejs            # Events listing with search
+│   │   │   ├── event-details.ejs     # Event details & registration
+│   │   │   ├── my-events.ejs         # User's registered events
+│   │   │   ├── login.ejs             # Login form
+│   │   │   ├── register.ejs          # Registration form
+│   │   │   ├── dashboard.ejs         # User dashboard
+│   │   │   ├── admin-dashboard.ejs   # Admin overview
+│   │   │   ├── admin-events.ejs      # Admin event management
+│   │   │   ├── admin-event-form.ejs  # Create/edit event form
+│   │   │   └── 404.ejs               # Not found page
+│   │   ├── components/                # Reusable components
+│   │   │   ├── qr-ticket.ejs         # QR ticket display & download
+│   │   │   └── qr-scanner.ejs        # QR code scanner
+│   │   └── partials/                  # Layout partials
+│   │       ├── header.ejs            # Header with navigation
+│   │       └── footer.ejs            # Footer
+│   ├── public/                        # Static assets
+│   │   ├── css/
+│   │   │   └── styles.css            # Main stylesheet
+│   │   └── js/
+│   │       └── main.js               # Client-side JavaScript
+│   └── README.md                      # Backend documentation
+├── frontend/                           # [Legacy React app - not in use]
 ├── .git/                              # Git repository
 ├── .vscode/                           # VS Code workspace settings
+├── vercel.json                        # Vercel deployment config
 ├── scope.md                           # Course project requirements
 ├── README.md                          # This file (root documentation)
 └── .gitignore                         # Git ignore rules
@@ -144,9 +114,9 @@ web-prog-253/
    cd web-prog-253
    ```
 
-2. **Navigate to frontend:**
+2. **Navigate to backend:**
    ```bash
-   cd frontend
+   cd backend
    ```
 
 3. **Install dependencies:**
@@ -154,26 +124,23 @@ web-prog-253/
    npm install
    ```
 
-4. **Setup environment:**
-   ```bash
-   cp .env.example .env
-   ```
-
-5. **Start development server:**
+4. **Start development server:**
    ```bash
    npm run dev
    ```
-   Opens automatically at `http://localhost:3000`
+   Server runs at `http://localhost:3000`
 
 ### Demo Accounts
 ```
 Regular User:
   Email: user@example.com
-  Password: password
+  Password: (any password works)
 
 Admin User:
   Email: admin@example.com
-  Password: password
+  Password: (any password works)
+
+Note: Email containing "admin" gets admin role
 ```
 
 ---

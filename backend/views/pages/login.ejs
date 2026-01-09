@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - UIU Events</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <%- include('../partials/header', { user }) %>
+  
+  <main class="container">
+    <section class="auth-page">
+      <div class="auth-card">
+        <h2 class="auth-card__title">Login</h2>
+        
+        <% if (error) { %>
+          <div class="alert alert--error"><%= error %></div>
+        <% } %>
+        
+        <form action="/login" method="post" class="auth-form">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="your@email.com" 
+              required 
+              autofocus
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="••••••••" 
+              required 
+            />
+          </div>
+          
+          <button type="submit" class="btn btn--primary btn--block btn--large">
+            Login
+          </button>
+        </form>
+        
+        <div class="auth-card__footer">
+          <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
+        
+        <div class="auth-card__demo">
+          <p><strong>Demo Accounts:</strong></p>
+          <p>User: user@example.com</p>
+          <p>Admin: admin@example.com</p>
+          <p>(Any password works for demo)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

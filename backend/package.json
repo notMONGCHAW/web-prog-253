@@ -1,0 +1,20 @@
+{
+  "name": "uiu-events-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "UIU Events - Express.js server-rendered app",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "keywords": ["express", "ejs", "events", "qr-code"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "ejs": "^3.1.9",
+    "qrcode": "^1.5.3"
+  }
+}
