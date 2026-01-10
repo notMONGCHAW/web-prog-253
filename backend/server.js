@@ -27,9 +27,6 @@ app.use(express.json())
 
 // Static files
 app.use('/static', express.static(path.join(__dirname, 'public')))
-// Serve root-level public assets for local dev
-app.use('/css', express.static(path.join(__dirname, '..', 'public', 'css')))
-app.use('/js', express.static(path.join(__dirname, '..', 'public', 'js')))
 
 // View engine
 app.set('views', path.join(__dirname, 'views'))
